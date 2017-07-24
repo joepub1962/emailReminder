@@ -1,0 +1,13 @@
+{
+  "autoload":{
+    "psr-4":{
+      "model\\db\\" : "model/db/",
+      "controller\\" : "controller"
+    }
+  },
+  "require": {
+    "monolog/monolog": "^1.22",
+    "twig/twig": "~2.0",
+    "swiftmailer/swiftmailer":"^6.0"
+  }
+}

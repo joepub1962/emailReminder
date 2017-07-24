@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reminder</title>
+    <style>
+      th, td  {font-size: "50px"; text-align: "center";}
+      p {font-size: 20px;}
+    </style>
+  </head>
+    <body>
+      <p>Dear {{userName}} , <br><br>
+      This is a reminder that you have scheduled to use the following CCNY Core Facilities
+        equipment tomorrow,<b> {{sessionDate}} </b></p>
+
+
+      <p>If you find the time is no longer needed, please update the online
+        booking calendar accordingly </p>
+
+      <table style="width:100%">
+        <thead>
+          <tr><th style= "font-size = 20px">Equipment</th><th>Date</th><th>Start</th><th>End</th><th>Note</th></tr>
+        </thead>
+          <tbody>
+            {% for item in dataArray %}
+              <tr><td style= "text-align: center; font-size: 20px">
+              {% for x in item %}
+                {{x}}</td><td style="text-align: center; font-size: 20px">
+              {% endfor %}
+              </td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+
+      <p>Please note the data entered in the online calendar is used to generate
+        monthly usage invoices. Keeping the schedule accurate not only saves research
+        funds but also allows other researchers to use the equipment effectively</p>
+
+      <p>Please contact us if you wish to unsubscribe from this notification</p>
+
+      <p>Thank you for using our core facilities,</p>
+
+      <p>CCNY CoreLABS team</p>
+    </body>
+</html>
