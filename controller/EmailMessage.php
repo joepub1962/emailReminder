@@ -1,17 +1,20 @@
 <?php
 namespace controller;
 use model\db\EmailMessageData;
+use \controller\ConfigEmail;
 require_once '../vendor/autoload.php';
 
 class EmailMessage
 {
   static function createAndSendEmail($emailDataArray){
-    foreach ($emailDataArray as $EmailDataObject) {
-      $objValues = get_object_vars($EmailDataObject);
+    $email_params = parse_ini_file("../model/db/emailParams.ini");
+    foreach ($emailDataArray as $emailDataObject) {
+      $objValues = get_object_vars($emailDataObject);
       $app = new EmailTemplateView();
-      $userEmailsAddress = $objValues['userEmailAddress']; //email addresses
       $msg = $app->generateView($objValues);
-      EmailSender::mailmsg($msg,$userEmailsAddress);
+      $configEmail = new ConfigEmail($email_params['userName'] , $email_params['userPassword'],$email_params['fromName'], $email_params['sentTo']);
+      //EmailSender::mailmsg($msg, $userEmailsAddress, $configEmail);
+      EmailSender::mailmsg($msg, $emailDataObject, $configEmail);
     }
   }
 }
